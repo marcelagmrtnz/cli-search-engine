@@ -18,6 +18,7 @@ public class InvertedIndex {
                 int location = 0;
                 while (textReader.hasNext()){
                     String word = textReader.next();
+                    word = word.replaceAll("[^A-Za-z0-9]", "").toLowerCase();
 
                     if (!words.containsKey(word)) {
                         words.put(word, new Word(word));
