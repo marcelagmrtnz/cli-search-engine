@@ -3,7 +3,7 @@ import java.util.*;
 public class Word {
     public String value;
     public int frequency;
-    public List<Integer> locations;
+    public List<Coordinate> locations;
 
     public Word (String value) {
         this.value = value;
@@ -11,8 +11,16 @@ public class Word {
         this.locations = new ArrayList<> ();
     }
 
-    public void updateWord (int location) {
+    public String toString () {
+        String locationString = "";
+        for (Coordinate coord: locations) {
+            locationString += coord.toString() + ";";
+        }
+        return locationString + " (" + String.valueOf(frequency) + ")";
+    }
+
+    public void updateWord (int document, int location) {
         frequency++;
-        locations.add(location);
+        locations.add(new Coordinate(document, location));
     }
 }
