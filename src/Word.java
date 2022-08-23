@@ -12,7 +12,7 @@ public class Word {
     }
 
     public String toString () {
-        String locationString = "";
+        String locationString = value + " ";
         for (Coordinate coord: locations) {
             locationString += coord.toString() + ";";
         }

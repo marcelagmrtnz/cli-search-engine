@@ -25,9 +25,8 @@ public class InvertedIndex {
                     }
                     words.get(word).updateWord(document, location);
                     location++;
-
-                    textReader.close();
                 }
+                textReader.close();
             } catch (FileNotFoundException e) {
                 System.out.println("File not found!");
                 e.printStackTrace();
@@ -51,8 +50,7 @@ public class InvertedIndex {
                 FileWriter outputWriter = new FileWriter(filename);
                 String wordsString = "word doc loc;...doc loc; (freq)\n";
                 for (Word word: words.values()) {
-                    wordsString += word.value;
-                    wordsString += " " + word.locations.toString() + "\n";
+                    wordsString += word.toString() + "\n";
                 }
                 outputWriter.write(wordsString);
                 outputWriter.close();
@@ -64,5 +62,9 @@ public class InvertedIndex {
             System.out.println("File could not be created!");
             e.printStackTrace();
         }
+    }
+
+    public void loadIndices (File inputFile) {
+        
     }
 }
