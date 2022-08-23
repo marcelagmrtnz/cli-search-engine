@@ -8,18 +8,6 @@ public class InvertedIndex {
         this.words = new HashMap<String, Word> ();
     }
 
-    public void putWord (String word, Word wordObj) {
-        words.put(word, wordObj);
-    }
-
-    public Word getWord (String word) {
-        return words.get(word);
-    }
-
-    public Array<Word> getValues () {
-        return words.values();
-    }
-
     public void buildIndices (File trainDir) {
         File[] trainFiles = trainDir.listFiles();
         int document = 0;
@@ -33,9 +21,9 @@ public class InvertedIndex {
                     word = word.replaceAll("[^A-Za-z0-9]", "").toLowerCase();
 
                     if (!words.containsKey(word)) {
-                        words.putWord(word, new Word(word));
+                        words.put(word, new Word(word));
                     }
-                    words.getWord(word).updateWord(document, location);
+                    words.get(word).updateWord(document, location);
                     location++;
                 }
                 textReader.close();
@@ -61,7 +49,7 @@ public class InvertedIndex {
             try {
                 FileWriter outputWriter = new FileWriter(filename);
                 String wordsString = "word doc loc;...doc loc; (freq)\n";
-                for (Word word: words.getValues()) {
+                for (Word word: words.values()) {
                     wordsString += word.toString() + "\n";
                 }
                 outputWriter.write(wordsString);
@@ -98,7 +86,7 @@ public class InvertedIndex {
                         curWord.updateWord(Integer.parseInt(splitLoc[0]), Integer.parseInt(splitLoc[1]));
                     }
                     // Adding word to InvertedIndex object
-                    words.putWord(lineSections[0], curWord);
+                    words.put(lineSections[0], curWord);
                 }
             }
             indexReader.close();
