@@ -1,7 +1,7 @@
 import java.io.*;
 
 public class SearchEngine {
-    InvertedIndex indices;
+    private InvertedIndex indices;
 
     public SearchEngine (InvertedIndex indices) {
         this.indices = indices;

@@ -1,14 +1,18 @@
 import java.util.*;
 
 public class Word {
-    public String value;
-    public int frequency;
-    public List<Coordinate> locations;
+    private String value;
+    private int frequency;
+    private List<Coordinate> locations;
 
     public Word (String value) {
         this.value = value;
         this.frequency = 0;
         this.locations = new ArrayList<> ();
+    }
+    
+    public String getValue () {
+        return value;
     }
 
     public String toString () {

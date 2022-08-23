@@ -1,6 +1,6 @@
 public class Coordinate {
-    public int document;
-    public int index;
+    private int document;
+    private int index;
 
     public Coordinate (int document, int index) {
         this.document = document;
