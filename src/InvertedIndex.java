@@ -65,6 +65,34 @@ public class InvertedIndex {
     }
 
     public void loadIndices (File inputFile) {
-        
+        try {
+            Scanner indexReader = new Scanner(inputFile);
+            boolean header = true;
+            while (indexReader.hasNext()) {
+                // Ignoring file header
+                if (header) {
+                    indexReader.next();
+                    header = false;
+                } else {
+                    // Pulling word info
+                    String wordLine = indexReader.next();
+                    String[] lineSections = wordLine.split("[ ]");
+                    // Initializing word object
+                    Word curWord = new Word(lineSections[0]);
+                    // Pulling location info and adding locations to word
+                    String[] locStrings = lineSections[1].split("[;]");
+                    for (String loc: locStrings) {
+                        String[] splitLoc = loc.split("[ ]");
+                        curWord.updateWord(Integer.parseInt(splitLoc[0]), Integer.parseInt(splitLoc[1]));
+                    }
+                    // Adding word to InvertedIndex object
+                    words.put(lineSections[0], curWord);
+                }
+            }
+            indexReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Could not open file!");
+            e.printStackTrace();
+        }
     }
 }
