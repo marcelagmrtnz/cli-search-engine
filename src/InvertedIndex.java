@@ -8,6 +8,14 @@ public class InvertedIndex {
         this.words = new HashMap<String, Word> ();
     }
 
+    public Word getWord (String word) {
+        return words.get(word);
+    }
+
+    public boolean hasWord (String word) {
+        return words.containsKey(word);
+    }
+
     public void buildIndices (File trainDir) {
         File[] trainFiles = trainDir.listFiles();
         int document = 0;

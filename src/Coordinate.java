@@ -7,6 +7,14 @@ public class Coordinate {
         this.index = index;
     }
 
+    public int getDoc () {
+        return document;
+    }
+
+    public int getInd () {
+        return index;
+    }
+
     public String toString () {
         return String.valueOf(document) + " " + String.valueOf(index);
     }

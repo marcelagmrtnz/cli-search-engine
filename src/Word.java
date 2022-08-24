@@ -10,11 +10,11 @@ public class Word {
         this.frequency = 0;
         this.locations = new ArrayList<> ();
     }
-    
-    public String getValue () {
-        return value;
+ 
+    public List<Coordinate> getLocs () {
+        return locations;
     }
-
+    
     public String toString () {
         String locationString = value + " ";
         for (Coordinate coord: locations) {

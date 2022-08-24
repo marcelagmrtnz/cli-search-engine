@@ -48,8 +48,8 @@ public class Main {
             System.out.println("Done!");
             // Running search
             System.out.println("Running search...");
-            SearchEngine engine = new SearchEngine(indices);
-            engine.runSearch(new File(searchDir));
+            SearchEngine engine = new SearchEngine(indices, new File(searchDir));
+            engine.runSearch();
         }
     }
 }
