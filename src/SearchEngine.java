@@ -22,11 +22,11 @@ public class SearchEngine {
     }
 
     private String searchIndices (String[] search) {
-        String result = "";
+        String result = "\n";
         for (String term: search) {
-            term = term.replaceAll("[^A-Za-b0-9]", "");
+            term = term.replaceAll("[^A-Za-z0-9]", "").toLowerCase();
             if (!indices.hasWord(term)) {
-                result += term + " Serach term not found.\n\n";
+                result += term + "\nSearch term not found.\n\n";
             } else {
                 result += term + "\n";
                 result += searchDocs(term) + "\n";
@@ -37,13 +37,13 @@ public class SearchEngine {
 
     public void runSearch () {
         System.out.println("Enter your search term. Multi-word searches must be space delimited.");
-        System.out.println("Enter .quit to exit serach engine.");
         Scanner searchReader = new Scanner(System.in);
         boolean running = true;
         while (running) {
-            System.out.println("Enter search term: ");
+            System.out.println("Enter search term or .quit to exit: ");
             String searchTerm = searchReader.nextLine();
-            if (searchTerm == ".quit") {
+            searchTerm = searchTerm.replaceAll("[^.A-Za-z0-9 ]", "");
+            if (searchTerm.equals(".quit")) {
                 running = false;
             } else {
                 String result = searchIndices(searchTerm.split("[ ]"));

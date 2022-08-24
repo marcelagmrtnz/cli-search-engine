@@ -25,7 +25,7 @@ public class InvertedIndex {
                 int lineNum = 0;
                 int location = 0;
                 while (textReader.hasNext()){
-                    String line = textReader.next();
+                    String line = textReader.nextLine();
                     for (String word: line.split("[ ]")) {                    
                         word = word.replaceAll("[^A-Za-z0-9]", "").toLowerCase();
                         if (!words.containsKey(word)) {
@@ -58,7 +58,7 @@ public class InvertedIndex {
 
             try {
                 FileWriter outputWriter = new FileWriter(filename);
-                String wordsString = "word doc loc;...doc loc; (freq)\n";
+                String wordsString = "word doc-loc-line;...doc-loc-line; (freq)\n";
                 for (Word word: words.values()) {
                     wordsString += word.toString() + "\n";
                 }
@@ -81,18 +81,18 @@ public class InvertedIndex {
             while (indexReader.hasNext()) {
                 // Ignoring file header
                 if (header) {
-                    indexReader.next();
+                    indexReader.nextLine();
                     header = false;
                 } else {
                     // Pulling word info
-                    String wordLine = indexReader.next();
+                    String wordLine = indexReader.nextLine();
                     String[] lineSections = wordLine.split("[ ]");
                     // Initializing word object
                     Word curWord = new Word(lineSections[0]);
                     // Pulling location info and adding locations to word
                     String[] locStrings = lineSections[1].split("[;]");
                     for (String loc: locStrings) {
-                        String[] splitLoc = loc.split("[ ]");
+                        String[] splitLoc = loc.split("[-]");
                         curWord.updateWord(Integer.parseInt(splitLoc[0]), Integer.parseInt(splitLoc[1]), Integer.parseInt(splitLoc[2]));
                     }
                     // Adding word to InvertedIndex object

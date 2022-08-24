@@ -16,7 +16,7 @@ public class Main {
                 // arg is optional flag
                 // arg is index file
                 ref = true;
-                if (arg.substring(2) == "index") {
+                if (arg.substring(2).equals("index")) {
                     load = true;
                 }
             } else {
@@ -31,7 +31,7 @@ public class Main {
         if (!load) {
             indices.buildIndices(new File(searchDir));
             // Intended to load, didn't provide file
-            if (refFile == "") {
+            if (refFile.equals("")) {
                 System.out.println("No InvertedIndex file provided. Building new one now...");
                 indices.outputIndices("./InvertedIndex.out");
             } else {

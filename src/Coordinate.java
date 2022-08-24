@@ -22,6 +22,6 @@ public class Coordinate {
     }
 
     public String toString () {
-        return String.valueOf(document) + " " + String.valueOf(index) + " " + String.valueOf(line);
+        return String.valueOf(document) + "-" + String.valueOf(index) + "-" + String.valueOf(line);
     }
 }
