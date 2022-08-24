@@ -23,9 +23,9 @@ public class InvertedIndex {
             try {
                 Scanner textReader = new Scanner(trainFile);
                 int lineNum = 0;
+                int location = 0;
                 while (textReader.hasNext()){
                     String line = textReader.next();
-                    int location = 0;
                     for (String word: line.split("[ ]")) {                    
                         word = word.replaceAll("[^A-Za-z0-9]", "").toLowerCase();
                         if (!words.containsKey(word)) {
