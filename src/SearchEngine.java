@@ -15,8 +15,8 @@ public class SearchEngine {
         for (Coordinate loc: indices.getWord(term).getLocs()) {
             File doc = searchDocs[loc.getDoc()];
             docLocs += "Filename: ";
-            docLocs += doc.getAbsolutePath() + ", Word Num: " + String.valueOf(loc.getInd());
-            docLocs += "\n";
+            docLocs += doc.getAbsolutePath() + ", Line Num: " + String.valueOf(loc.getLine());
+            docLocs +=  ", Word Num: " + String.valueOf(loc.getInd()) + "\n";
         }
         return docLocs;
     }

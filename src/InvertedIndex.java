@@ -22,17 +22,19 @@ public class InvertedIndex {
         for (File trainFile : trainFiles) {
             try {
                 Scanner textReader = new Scanner(trainFile);
-                textReader.useDelimiter(" ");
-                int location = 0;
+                int lineNum = 0;
                 while (textReader.hasNext()){
-                    String word = textReader.next();
-                    word = word.replaceAll("[^A-Za-z0-9]", "").toLowerCase();
-
-                    if (!words.containsKey(word)) {
-                        words.put(word, new Word(word));
+                    String line = textReader.next();
+                    int location = 0;
+                    for (String word: line.split("[ ]")) {                    
+                        word = word.replaceAll("[^A-Za-z0-9]", "").toLowerCase();
+                        if (!words.containsKey(word)) {
+                            words.put(word, new Word(word));
+                        }
+                        words.get(word).updateWord(document, location, lineNum);
+                        location++;
                     }
-                    words.get(word).updateWord(document, location);
-                    location++;
+                    lineNum++;
                 }
                 textReader.close();
             } catch (FileNotFoundException e) {
@@ -91,7 +93,7 @@ public class InvertedIndex {
                     String[] locStrings = lineSections[1].split("[;]");
                     for (String loc: locStrings) {
                         String[] splitLoc = loc.split("[ ]");
-                        curWord.updateWord(Integer.parseInt(splitLoc[0]), Integer.parseInt(splitLoc[1]));
+                        curWord.updateWord(Integer.parseInt(splitLoc[0]), Integer.parseInt(splitLoc[1]), Integer.parseInt(splitLoc[2]));
                     }
                     // Adding word to InvertedIndex object
                     words.put(lineSections[0], curWord);

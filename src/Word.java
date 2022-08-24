@@ -23,8 +23,8 @@ public class Word {
         return locationString + " (" + String.valueOf(frequency) + ")";
     }
 
-    public void updateWord (int document, int location) {
+    public void updateWord (int document, int location, int line) {
         frequency++;
-        locations.add(new Coordinate(document, location));
+        locations.add(new Coordinate(document, location, line));
     }
 }
