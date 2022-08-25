@@ -31,7 +31,7 @@ charlie 0-2-3;1-1-4;1-2-3; (3)
 Running search...
 Enter your search term. Multi-word searches must be space delimited.
 Enter search term or .quit to exit: 
-**alpha bravo delta**
+alpha bravo delta
 
 alpha
 Filename: /foo/bar/file.txt, Line Num: 1, Word Num: 0
