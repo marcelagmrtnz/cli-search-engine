@@ -25,6 +25,12 @@ public class Main {
             }
         }
 
+        // Checking that search directory is provided and stopping if it is not
+        if (searchDir.equals("")) {
+            System.out.println("Search directory not provided. Please provide search directory either to index or search.");
+            return;
+        }
+
         // Creating InvertedIndex object
         InvertedIndex indices = new InvertedIndex();
         // Building file
