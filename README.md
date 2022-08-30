@@ -1,6 +1,10 @@
 # cli-search-engine
 Basic command line search engine that allows for efficient search of a set of documents. Utilizes the InvertedIndex data structure to index words across documents and return word locations at search time. Can be used both to create InvertedIndex file, and to load these files in order to search.
 
+## CLI Text Editor Tool Suite
+This tools is a part of a series of Java based text tools designed to work in command line. Other tools in this suite include:
+- [CLI Spellcheck](https://github.com/marcusgabrielmartinez/cli-spellcheck)
+
 ## System Requirements
 - Java 1.8.0_201+
 
