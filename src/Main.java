@@ -5,6 +5,7 @@ public class Main {
         // Parsing args
         boolean ref = false;
         boolean load = false;
+        boolean build = false;
         String refFile = "";
         String searchDir = "";
         for (String arg: args) {
@@ -17,7 +18,18 @@ public class Main {
                 // arg is index file
                 ref = true;
                 if (arg.substring(2).equals("index")) {
+                    if (build) {
+                        System.out.println("Cannot load and build in same run. Use only one flag.");
+                        System.exit(1);
+                    }
                     load = true;
+                } else {
+                    // arg is build file
+                    if (load) {
+                        System.out.println("Cannot load and build in same run. Use only one flag.");
+                        System.exit(1);
+                    }
+                    build = true;
                 }
             } else {
                 // arg is filename for search directory
@@ -40,13 +52,14 @@ public class Main {
             if (refFile.equals("")) {
                 System.out.println("No InvertedIndex file provided. Building new one now...");
                 indices.outputIndices("./InvertedIndex.out");
+                System.out.println("Done!");
+                System.out.println("If you meant to load a file and run the search engine, try now with the --index flag and your new InvertedIndex.out file.");
             } else {
                 // Intended to build
                 System.out.println("Building new InvertedIndex file...");
                 indices.outputIndices(refFile);
+                System.out.println("Done!");
             }
-            System.out.println("Done!");
-            System.out.println("If you meant to load a file and run the search engine, try now with the --index flag and your new InvertedIndex.out file.");
         } else {
             // Loading file
             System.out.println("Loading InvertedIndex file...");

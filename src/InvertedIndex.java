@@ -38,8 +38,8 @@ public class InvertedIndex {
                 }
                 textReader.close();
             } catch (FileNotFoundException e) {
-                System.out.println("File not found!");
-                e.printStackTrace();
+                System.out.println("File " + trainFile.getName() + " not found!");
+                System.exit(1);
             }
             document++;
         }   
@@ -65,12 +65,12 @@ public class InvertedIndex {
                 outputWriter.write(wordsString);
                 outputWriter.close();
             } catch (IOException e) {
-                System.out.println("Inverted Index data could not be output!");
-                e.printStackTrace();
+                System.out.println("Inverted Index data could not be output! Check permissions and file/directory path.");
+                System.exit(1);
             }
         } catch (IOException e) {
             System.out.println("File could not be created!");
-            e.printStackTrace();
+            System.exit(1);
         }
     }
 
@@ -101,8 +101,8 @@ public class InvertedIndex {
             }
             indexReader.close();
         } catch (FileNotFoundException e) {
-            System.out.println("Could not open file!");
-            e.printStackTrace();
+            System.out.println("Could not open file " + inputFile.getName());
+            System.exit(1);
         }
     }
 }

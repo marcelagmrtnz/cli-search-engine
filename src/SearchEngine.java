@@ -13,10 +13,15 @@ public class SearchEngine {
     private String searchDocs (String term) {
         String docLocs = "";
         for (Coordinate loc: indices.getWord(term).getLocs()) {
-            File doc = searchDocs[loc.getDoc()];
-            docLocs += "Filename: ";
-            docLocs += doc.getAbsolutePath() + ", Line Num: " + String.valueOf(loc.getLine());
-            docLocs +=  ", Word Num: " + String.valueOf(loc.getInd()) + "\n";
+            try {
+                File doc = searchDocs[loc.getDoc()];
+                docLocs += "Filename: ";
+                docLocs += doc.getAbsolutePath() + ", Line Num: " + String.valueOf(loc.getLine());
+                docLocs +=  ", Word Num: " + String.valueOf(loc.getInd()) + "\n";
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("Error retrieving indexed document. Files may have been deleted or permissions changed. Try rebuilding index file.");
+                System.exit(1);
+            }
         }
         return docLocs;
     }
