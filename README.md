@@ -1,4 +1,4 @@
-# cli-search-engine
+# [cli-search-engine](https://github.com/marcelagmrtnz/cli-search-engine)
 Basic command line search engine that allows for efficient search of a set of documents. Utilizes the InvertedIndex data structure to index words across documents and return word locations at search time. Can be used both to create InvertedIndex file, and to load these files in order to search.
 
 ## CLI Text Editor Tool Suite
